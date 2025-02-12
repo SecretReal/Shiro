@@ -2716,35 +2716,21 @@ function MacLib:Window(Settings)
 					local dropped = false
 					local db = false
 
+					local dropped = false
 					local function ToggleDropdown()
-						if db then return end
-						db = true
 						local defaultDropdownSize = 38
 						local isDropdownOpen = not dropped
-						local targetSize = isDropdownOpen and UDim2.new(1, 0, 0, CalculateDropdownSize()) or UDim2.new(1, 0, 0, defaultDropdownSize)
-
-						local dropTween = Tween(dropdown, TweenInfo.new(0.2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {
-							Size = targetSize
-						})
-						local iconTween = Tween(dropdownImage, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-							Rotation = isDropdownOpen and -90 or 0
-						})
-
-						dropTween:Play()
-						iconTween:Play()
-
+						local isAddon = self.addons ~= nil
+						local targetSize = isDropdownOpen and UDim2.new(isAddon and 0 or 1, isAddon and 250 or 0, 0, CalculateDropdownSize()) or UDim2.new(isAddon and 0 or 1, isAddon and 250 or 0, 0, defaultDropdownSize)
+			
+						dropdown.Size = targetSize
+			
 						if isDropdownOpen then
 							dropdownFrame.Visible = true
-							dropTween.Completed:Connect(function()
-								db = false
-							end)
 						else
-							dropTween.Completed:Connect(function()
-								dropdownFrame.Visible = false
-								db = false
-							end)
+							dropdownFrame.Visible = false
 						end
-
+			
 						dropped = isDropdownOpen
 					end
 
