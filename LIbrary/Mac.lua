@@ -2732,28 +2732,14 @@ function MacLib:Window(Settings)
 						local isDropdownOpen = not dropped
 						local targetSize = isDropdownOpen and UDim2.new(isAddon and 0 or 1, isAddon and 250 or 0, 0, CalculateDropdownSize()) or UDim2.new(isAddon and 0 or 1, isAddon and 250 or 0, 0, defaultDropdownSize)
 
-						local dropTween = Tween(dropdown, TweenInfo.new(0.2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {
-							Size = targetSize
-						})
-						local iconTween = Tween(dropdownImage, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-							Rotation = isDropdownOpen and -90 or 0
-						})
-
-						dropTween:Play()
-						iconTween:Play()
+						dropdown.Size = targetSize
 
 						if isDropdownOpen then
 							dropdownFrame.Visible = true
-							dropTween.Completed:Connect(function()
-								db = false
-							end)
 						else
-							dropTween.Completed:Connect(function()
-								dropdownFrame.Visible = false
-								db = false
-							end)
+							dropdownFrame.Visible = false
 						end
-
+			
 						dropped = isDropdownOpen
 					end
 
@@ -2843,20 +2829,6 @@ function MacLib:Window(Settings)
 							checkSizeIncrease = 12,
 							checkSizeDecrease = -optionUIListLayout.Padding.Offset,
 							waitTime = 1
-						}
-						local tweens = {
-							checkIn = Tween(checkmark, TweenInfo.new(tweensettings.duration, tweensettings.easingStyle), {
-								Size = UDim2.new(checkmark.Size.X.Scale, tweensettings.checkSizeIncrease, checkmark.Size.Y.Scale, checkmark.Size.Y.Offset)
-							}),
-							checkOut = Tween(checkmark, TweenInfo.new(tweensettings.duration, tweensettings.easingStyle),{
-								Size = UDim2.new(checkmark.Size.X.Scale, tweensettings.checkSizeDecrease, checkmark.Size.Y.Scale, checkmark.Size.Y.Offset)
-							}),
-							nameIn = Tween(optionName, TweenInfo.new(tweensettings.duration, tweensettings.easingStyle),{
-								TextTransparency = tweensettings.transparencyIn
-							}),
-							nameOut = Tween(optionName, TweenInfo.new(tweensettings.duration, tweensettings.easingStyle),{
-								TextTransparency = tweensettings.transparencyOut
-							})
 						}
 
 						local isSelected = false
