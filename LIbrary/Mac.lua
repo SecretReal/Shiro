@@ -2602,15 +2602,8 @@ function MacLib:Window(Settings)
 
 					local function CalculateDropdownSize()
 						local count = 0
-						local totalHeight = 0
-						local visibleChildrenCount = 0
-						local padding = dropdownFrameUIPadding.PaddingTop.Offset + dropdownFrameUIPadding.PaddingBottom.Offset
-
-						for _, v in pairs(dropdownFrame:GetChildren()) do
-							if not v:IsA("UIComponent") and v.Visible then
-								totalHeight += v.AbsoluteSize.Y
-								visibleChildrenCount += 1
-							end
+						for _,v in pairs(dropdownFrame:GetChildren()) do
+							if v:IsA("GuiObject") and v.Visible then count += 1 end
 						end
 						if count == 0 then
 							count = 1
@@ -2634,8 +2627,6 @@ function MacLib:Window(Settings)
 								v.Button.Visible = isVisible
 							end
 						end
-
-						dropdown.Size = UDim2.new(1, 0, 0, CalculateDropdownSize())
 					end
 
 					searchBox:GetPropertyChangedSignal("Text"):Connect(findOption)
