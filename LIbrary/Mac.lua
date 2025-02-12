@@ -2730,7 +2730,7 @@ function MacLib:Window(Settings)
 						db = true
 						local defaultDropdownSize = 38
 						local isDropdownOpen = not dropped
-						local targetSize = isDropdownOpen and UDim2.new(1, 0, 0, CalculateDropdownSize()) or UDim2.new(1, 0, 0, defaultDropdownSize)
+						local targetSize = isDropdownOpen and UDim2.new(isAddon and 0 or 1, isAddon and 250 or 0, 0, CalculateDropdownSize()) or UDim2.new(isAddon and 0 or 1, isAddon and 250 or 0, 0, defaultDropdownSize)
 
 						local dropTween = Tween(dropdown, TweenInfo.new(0.2, Enum.EasingStyle.Exponential, Enum.EasingDirection.Out), {
 							Size = targetSize
