@@ -2716,15 +2716,15 @@ function MacLib:Window(Settings)
 					local dropped = false
 					local db = false
 
+					local dropped = false
 					local function ToggleDropdown()
-						if db then return end
-						db = true
 						local defaultDropdownSize = 38
 						local isDropdownOpen = not dropped
+						local isAddon = self.addons ~= nil
 						local targetSize = isDropdownOpen and UDim2.new(isAddon and 0 or 1, isAddon and 250 or 0, 0, CalculateDropdownSize()) or UDim2.new(isAddon and 0 or 1, isAddon and 250 or 0, 0, defaultDropdownSize)
-
+			
 						dropdown.Size = targetSize
-
+			
 						if isDropdownOpen then
 							dropdownFrame.Visible = true
 						else
