@@ -2601,6 +2601,7 @@ function MacLib:Window(Settings)
 					searchBox.Size = UDim2.fromScale(1, 1)
 
 					local function CalculateDropdownSize()
+						local count = 0
 						local totalHeight = 0
 						local visibleChildrenCount = 0
 						local padding = dropdownFrameUIPadding.PaddingTop.Offset + dropdownFrameUIPadding.PaddingBottom.Offset
@@ -2610,6 +2611,9 @@ function MacLib:Window(Settings)
 								totalHeight += v.AbsoluteSize.Y
 								visibleChildrenCount += 1
 							end
+						end
+						if count == 0 then
+							count = 1
 						end
 						local calculationVals = {
 							[1] = dropdown.AbsoluteSize.Y,
