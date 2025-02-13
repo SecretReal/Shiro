@@ -2611,7 +2611,7 @@ function MacLib:Window(Settings)
 						local calculationVals = {
 							[1] = dropdown.AbsoluteSize.Y,
 							[2] = dropdownFrameUIPadding.PaddingTop.Offset - dropdownFrameUIPadding.PaddingBottom.Offset,
-							[3] = 34 * count
+							[3] = 38 * count
 						}
 						return calculationVals[1] + calculationVals[2] + calculationVals[3]
 					end
